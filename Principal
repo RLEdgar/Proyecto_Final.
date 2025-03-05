@@ -10,76 +10,74 @@ typedef struct {
 // Estructura para un equipo
 typedef struct {
     char nombre[50];
-    Jugador jugadores[11]; // 11 jugadores máximo por equipo
+    Jugador jugadores[11];
     int num_jugadores;
     int goles_totales;
 } Equipo;
 
-Equipo equipos[10]; // Lista de hasta 10 equipos
+Equipo equipos[10]; 
 int num_equipos = 0;
 
-// Declaración de funciones para los diferentes títulos y subtítulos
-// TÍTULO 1: Inscripción de equipos
+// Inscripción de equipos
 void altas() { }
 void bajas() { }
 void emparejamiento() { }
 
-// TÍTULO 2: Emparejamiento (calendario)
+//  Emparejamiento (calendario)
 void mostrar_uso_equipos() { }
 void horarios_de_juego() { }
 
-// TÍTULO 3: Estadísticas de juego
+// Estadísticas de juego
 void goles_y_quien_marco() { }
 void mostrar_mvp() { }
 
-// TÍTULO 4: Fase eliminatoria
+//  Fase eliminatoria
 void quien_paso() { }
 void como_quedaron_los_juegos() { }
 void eliminacion_por_puntos() { }
 
-// TÍTULO 5: Información de equipos
+// Información de equipos
 void nombre_de_equipo_y_jugadores() { }
 
-// TÍTULO 6: Apuestas (Parley)
+//  Apuestas (Parley)
 void apuesta() { }
 
 int main() {
     int opcion;
 
     do {
-        // Menú de opciones con los Títulos y Subtítulos
-        printf("\nMen%c:\n", 160);  // "Menú"
-        printf("1. Inscripci%cn de equipos\n", 162);  // Título 1: "Inscripción de equipos"
+
+        printf("\nMen%c:\n", 160); 
+        printf("1. Inscripci%cn de equipos\n", 162); 
         printf("    1.1 Altas\n");
         printf("    1.2 Bajas\n");
         printf("    1.3 Emparejamiento\n");
         
-        printf("2. Emparejamiento (calendario)\n", 162);  // Título 2: "Emparejamiento (calendario)"
+        printf("2. Emparejamiento (calendario)\n", 162);  
         printf("    2.1 Se mostrará el uso de equipos\n");
         printf("    2.2 Horarios de juego\n");
         
-        printf("3. Estad%cticas de juego\n", 161);  // Título 3: "Estadísticas de juego"
+        printf("3. Estad%cticas de juego\n", 161); 
         printf("    3.1 Goles y quién marcó\n");
         printf("    3.2 Mostrar MVP\n");
         
-        printf("4. Fase eliminatoria\n");  // Título 4: "Fase eliminatoria"
+        printf("4. Fase eliminatoria\n"); 
         printf("    4.1 Quién pasó\n");
         printf("    4.2 Cómo quedaron los juegos\n");
         printf("    4.3 Eliminación por puntos\n");
         
-        printf("5. Información de equipos\n");  // Título 5: "Información de equipos"
+        printf("5. Información de equipos\n");  
         printf("    5.1 Nombre de equipo y jugadores\n");
         
-        printf("6. Apuestas (Parley)\n");  // Título 6: "Apuestas"
+        printf("6. Apuestas (Parley)\n"); 
         printf("7. Salir\n");
         
         printf("Ingrese una opción: ");
         scanf("%d", &opcion);
 
-        // Acciones según la opción seleccionada
         switch (opcion) {
             case 1:
-                printf("\nTÍTULO 1: Inscripción de equipos\n");
+                printf("\n1: Inscripción de equipos\n");
                 int subopcion1;
                 printf("    1.1 Altas\n");
                 printf("    1.2 Bajas\n");
@@ -88,13 +86,13 @@ int main() {
                 scanf("%d", &subopcion1);
                 switch (subopcion1) {
                     case 1:
-                        altas();  // Alta de equipos
+                        altas();  
                         break;
                     case 2:
-                        bajas();  // Bajas de equipos
+                        bajas();  
                         break;
                     case 3:
-                        emparejamiento();  // Emparejamiento de equipos (calendario)
+                        emparejamiento();  
                         break;
                     default:
                         printf("Opción no válida.\n");
@@ -102,7 +100,7 @@ int main() {
                 break;
 
             case 2:
-                printf("\nTÍTULO 2: Emparejamiento (calendario)\n");
+                printf("\n2: Emparejamiento (calendario)\n");
                 int subopcion2;
                 printf("    2.1 Se mostrará el uso de equipos\n");
                 printf("    2.2 Horarios de juego\n");
@@ -110,10 +108,10 @@ int main() {
                 scanf("%d", &subopcion2);
                 switch (subopcion2) {
                     case 1:
-                        mostrar_uso_equipos();  // Mostrar uso de equipos
+                        mostrar_uso_equipos(); 
                         break;
                     case 2:
-                        horarios_de_juego();  // Mostrar horarios de juego
+                        horarios_de_juego();  
                         break;
                     default:
                         printf("Opción no válida.\n");
@@ -121,7 +119,7 @@ int main() {
                 break;
 
             case 3:
-                printf("\nTÍTULO 3: Estadísticas de juego\n");
+                printf("\n3: Estadísticas de juego\n");
                 int subopcion3;
                 printf("    3.1 Goles y quién marcó\n");
                 printf("    3.2 Mostrar MVP\n");
@@ -129,18 +127,18 @@ int main() {
                 scanf("%d", &subopcion3);
                 switch (subopcion3) {
                     case 1:
-                        goles_y_quien_marco();  // Goles y quién marcó
+                        goles_y_quien_marco();  
                         break;
                     case 2:
-                        mostrar_mvp();  // Mostrar MVP
+                        mostrar_mvp();  
                         break;
                     default:
-                        printf("Opción no válida.\n");
+                        printf("no válida.\n");
                 }
                 break;
 
             case 4:
-                printf("\nTÍTULO 4: Fase eliminatoria\n");
+                printf("\n4: Fase eliminatoria\n");
                 int subopcion4;
                 printf("    4.1 Quién pasó\n");
                 printf("    4.2 Cómo quedaron los juegos\n");
@@ -163,17 +161,17 @@ int main() {
                 break;
 
             case 5:
-                printf("\nTÍTULO 5: Información de equipos\n");
+                printf("\n5: Información de equipos\n");
                 nombre_de_equipo_y_jugadores();  // Nombre de equipo y jugadores
                 break;
 
             case 6:
-                printf("\nTÍTULO 6: Apuestas (Parley)\n");
+                printf("\n6: Apuestas \n");
                 apuestas();  // Función de apuestas
                 break;
 
             case 7:
-                printf("Saliendo del programa...\n");
+                printf("Salir\n");
                 break;
 
             default:
