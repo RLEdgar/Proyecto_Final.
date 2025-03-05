@@ -1,0 +1,69 @@
+#include <stdio.h>
+#include <string.h>
+
+// Estructura para un jugador
+typedef struct {
+    char nombre[50];
+    int goles;
+} Jugador;
+
+// Estructura para un equipo
+typedef struct {
+    char nombre[50];
+    Jugador jugadores[11]; // 11 jugadores máximo por equipo
+    int num_jugadores;
+    int goles_totales;
+} Equipo;
+
+Equipo equipos[10]; // Lista de hasta 10 equipos
+int num_equipos = 0;
+
+// Declaración de funciones
+void inscripcion_equipos() { }
+void bajas() { }
+void emparejamiento() { }
+void estadisticas() { }
+void agregar_jugadores() { }
+void registrar_goles() { }
+
+int main() {
+    int opcion;
+
+    do {
+
+        printf("\nMen%c:\n", 160);  
+        printf("1. Inscripci%cn de equipos\n", 162);  
+        printf("2. Bajas de equipos\n");
+        printf("3. Emparejamiento (calendario)\n");
+        printf("4. Estad%cticas de juego\n", 161);  
+        printf("5. Informaci%cn de equipos\n", 162); 
+        printf("6. Salir\n");
+        printf("Ingrese una opci%cn: ", 162); 
+        scanf("%d", &opcion);
+
+        switch (opcion) {
+            case 1:
+                inscripcion_equipos();
+                break;
+            case 2:
+                bajas();
+                break;
+            case 3:
+                emparejamiento();
+                break;
+            case 4:
+                estadisticas();
+                break;
+            case 5:
+                agregar_jugadores();
+                break;
+            case 6:
+                printf("Saliendo\n");
+                break;
+            default:
+                printf("Opci%cn no v%clida.\n", 162, 161);  
+        }
+    } while (opcion != 6);
+
+    return 0;
+}
