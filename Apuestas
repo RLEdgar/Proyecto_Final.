@@ -1,1 +1,41 @@
 
+void apuesta() {
+    int monto_apostado, equipo_a_apostar, resultado_partido, equipo_ganador;
+    double dinero_total = 10000.0; 
+
+    
+    printf("\nTienes un total de $%.2f disponibles para apostar.\n", dinero_total);
+    printf("¿Cuánto deseas apostar? (máximo $10,000): ");
+    scanf("%d", &monto_apostado);
+
+    if (monto_apostado > dinero_total) {
+        printf("No tienes suficiente dinero para realizar esa apuesta.\n");
+        return;
+    }
+
+    printf("¿A qué equipo deseas apostar? (Elige un número del 1 al 10): ");
+    scanf("%d", &equipo_a_apostar);
+
+    if (equipo_a_apostar < 1 || equipo_a_apostar > 10) {
+        printf("Selección de equipo inválida.\n");
+        return;
+    }
+
+    resultado_partido = rand() % 2;  // 0 = empate o victoria de un equipo, 1 = victoria del otro equipo
+
+    equipo_ganador = rand() % 10 + 1;  // Número aleatorio entre 1 y 10
+
+    printf("\nEl equipo %d ganó el partido.\n", equipo_ganador);
+
+    if (equipo_a_apostar == equipo_ganador) {
+        // Ganó la apuesta
+        printf("¡Felicidades! Has ganado la apuesta.\n");
+        dinero_total += monto_apostado * 1.5;  // Ganas un 50% más de lo apostado
+        printf("Tu dinero total ahora es: $%.2f\n", dinero_total);
+    } else {
+        // Perdió la apuesta
+        printf("Lo siento, has perdido la apuesta.\n");
+        dinero_total -= monto_apostado;  // Pierdes lo apostado
+        printf("Tu dinero total ahora es: $%.2f\n", dinero_total);
+    }
+}
