@@ -124,7 +124,7 @@ void mostrar_equipos() {
 }
 
 // Menú principal
-void menu() {
+void altas_bajas() {
     int opcion;
     do {
         printf("\n--- MENU ---\n");
@@ -146,7 +146,7 @@ void menu() {
                 mostrar_equipos();
                 break;
             case 4:
-                printf("Saliendo del programa...\n");
+                printf("Regresando al menu principal...\n");
                 break;
             default:
                 printf("Opción no válida, intente de nuevo.\n");
