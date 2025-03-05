@@ -4,8 +4,49 @@
 #include <stdio.h>
 #include <stdlib.h>
 
+#define EQUIPOS 10
+
+typedef struct{
+  char nombre[30];
+  char posicion[15];
+  char equipo[20];
+  int edad;
+}jugador;
+
+typedef enum{
+  a = 1;
+  b;
+  c;
+  d; 
+  e;
+  f;
+  g;
+  h;
+  i;
+  j;
+}nom_equipo;
+
 void altas(){
+  int cuantos;
+  printf("Esta funcion es para dar de alta a los jugadores");
 
+  printf("Selecciona el equipo en que se van a inscribir");
+  equipo();
 
+  switch
+  
+  scanf("%d", &cuantos);
+  
+  for(){}
+}
 
+int equipo(){
+
+  printf("Equipos de la FES Acatlan");
+  for(int i = 0; i < EQUIPOS; i++){
+    printf("%d.-  nom_equipo", i+1);
+  }  
+
+  
+}
 #endif
