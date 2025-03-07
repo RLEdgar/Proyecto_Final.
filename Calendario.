@@ -1,0 +1,17 @@
+#ifndef CALENDARIO
+#define CALENDARIO
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <time.h>
+
+void mezclar_equpos(){
+  for(int i = total_equipos; i > 0; i--){
+    int j = rand() % (i + 1);
+    equipos temp = equipos[i];
+    equipos[i] = equipos[j];
+    equipos[j] = temp;
+  }
+}
+
+void 
