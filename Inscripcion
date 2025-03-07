@@ -157,12 +157,70 @@ void mostrar_equipos() {
     for (int i = 0; i < total_equipos; i++) {
         printf("%d. %s (Jugadores: %d)\n", i + 1, equipos[i].nombre, equipos[i].num_jugadores);
     }
+    
 }
+
+//Leer Archivo
+void cargar_datos() {
+    FILE *fp = fopen("fifa.in", "r"); // Abrir archivo en modo lectura
+    if (fp == NULL) {
+        printf("No se encontraron datos previos.\n");
+        return; // Si el archivo no existe, simplemente salimos de la función
+    }
+
+    fscanf(fp, "%d\n", &total_equipos); // Leer el número total de equipos
+
+    for (int i = 0; i < total_equipos; i++) {
+        fgets(equipos[i].nombre, sizeof(equipos[i].nombre), fp);
+        limpiar_salto_linea(equipos[i].nombre); // Quitar salto de línea
+        fscanf(fp, "%d\n", &equipos[i].num_jugadores); // Leer cantidad de jugadores
+
+        for (int j = 0; j < equipos[i].num_jugadores; j++) {
+            fgets(equipos[i].jugadores[j].nombre, sizeof(equipos[i].jugadores[j].nombre), fp);
+            limpiar_salto_linea(equipos[i].jugadores[j].nombre);
+            fscanf(fp, "%d\n", &equipos[i].jugadores[j].edad);
+            fscanf(fp, "%d\n", &equipos[i].jugadores[j].num_cuenta);
+            fgets(equipos[i].jugadores[j].posicion, sizeof(equipos[i].jugadores[j].posicion), fp);
+            limpiar_salto_linea(equipos[i].jugadores[j].posicion);
+        }
+    }
+
+    fclose(fp); // Cerrar archivo
+    printf("Datos cargados correctamente.\n");
+}
+
+//Guardar archivo
+void guardar_datos() {
+    FILE *fp = fopen("fifa.in", "w"); // Abrir archivo en modo escritura
+    if (fp == NULL) {
+        printf("Error al guardar los datos.\n");
+        return;
+    }
+
+    fprintf(fp, "%d\n", total_equipos); // Guardar número total de equipos
+
+    for (int i = 0; i < total_equipos; i++) {
+        fprintf(fp, "%s\n", equipos[i].nombre); // Guardar nombre del equipo
+        fprintf(fp, "%d\n", equipos[i].num_jugadores); // Guardar número de jugadores
+
+        for (int j = 0; j < equipos[i].num_jugadores; j++) {
+            fprintf(fp, "%s\n", equipos[i].jugadores[j].nombre);
+            fprintf(fp, "%d\n", equipos[i].jugadores[j].edad);
+            fprintf(fp, "%d\n", equipos[i].jugadores[j].num_cuenta);
+            fprintf(fp, "%s\n", equipos[i].jugadores[j].posicion);
+        }
+    }
+
+    fclose(fp); // Cerrar archivo
+    printf("Datos guardados correctamente.\n");
+}
+
 
 // Menú principal
 void menu() {
     int opcion;
     do {
+    	system("cls");
         printf("\n--- MENU ---\n");
         printf("1. Registrar equipo\n");
         printf("2. Registrar jugadores\n");
@@ -176,15 +234,19 @@ void menu() {
         switch (opcion) {
             case 1:
                 registrar_equipo();
+                system("pause");
                 break;
             case 2:
                 registrar_jugadores();
+                system("pause");
                 break;
             case 3:
                 eliminar_jugador();
-                break;
+                system("pause");
+				break;
             case 4:
                 mostrar_equipos();
+                system("pause");
                 break;
             case 5:
                 printf("Saliendo del programa...\n");
@@ -195,5 +257,11 @@ void menu() {
     } while (opcion != 5);
 }
 
-#endif
+int inscripcion (){
+	cargar_datos();
+	menu();
+	guardar_datos();
+	return 0;
+}
 
+#endif
