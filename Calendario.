@@ -1,17 +1,71 @@
-#ifndef CALENDARIO
-#define CALENDARIO
+#ifndef EMPAREJAMIENTO
+#define EMPAREJAMIENTO
 
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
 
-void mezclar_equpos(){
-  for(int i = total_equipos; i > 0; i--){
-    int j = rand() % (i + 1);
-    equipos temp = equipos[i];
-    equipos[i] = equipos[j];
-    equipos[j] = temp;
-  }
+// Función para mezclar los equipos aleatoriamente
+void mezclar_equipos() {
+    srand(time(NULL));
+    for (int i = total_equipos - 1; i > 0; i--) {
+        int j = rand() % (i + 1);
+        Equipo temp = equipos[i];
+        equipos[i] = equipos[j];
+        equipos[j] = temp;
+    }
 }
 
-void 
+// Función para emparejar equipos en primera fase
+void one_fase() {
+    if (total_equipos < 2) {
+        printf("No hay suficientes equipos para organizar partidos.\n");
+        return;
+    }
+
+    mezclar_equipos(); // Mezclamos los equipos antes de emparejarlos
+
+    printf("\nPartidos programados:\n");
+    for (int i = 0; i < total_equipos - 1; i += 2) {
+        printf("%s vs %s\n", equipos[i].nombre, equipos[i + 1].nombre);
+    }
+
+    // Si hay un número impar de equipos, el último queda sin partido
+    if (total_equipos % 2 != 0) {
+        printf("%s descansa esta ronda.\n", equipos[total_equipos - 1].nombre);
+    }
+}
+
+int two_fase(int n){
+	int puntos, i;
+	
+	if (total_equipos < 2) {
+        printf("No hay suficientes equipos para organizar partidos.\n");
+        return;
+    }
+    
+    for(i = total_equipos; i < total_equipos; i--){
+    	
+	}
+}    
+
+
+// Función de comparación para qsort
+int comparar(const void *a, const void *b) {
+    return (*(int*)a - *(int*)b);
+}
+
+void emparejar_numeros(int arr[], int size) {
+    // Ordenar los números
+    qsort(arr, size, sizeof(int), comparar);
+
+    // Emparejar e imprimir
+    for (int i = 0; i < size - 1; i += 2) {
+        printf("%d -> %d\n", arr[i], arr[i + 1]);
+    }
+
+    // Manejar caso impar
+    if (size % 2 != 0) {
+        printf("El número %d no tiene pareja.\n", arr[size - 1]);
+    }
+}
