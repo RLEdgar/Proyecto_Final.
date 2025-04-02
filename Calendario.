@@ -4,8 +4,10 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
+#include <string.h>
 
-// Función para mezclar los equipos aleatoriamente
+#include "inscripcion.h"
+
 void mezclar_equipos() {
     srand(time(NULL));
     for (int i = total_equipos - 1; i > 0; i--) {
@@ -15,57 +17,71 @@ void mezclar_equipos() {
         equipos[j] = temp;
     }
 }
-
-// Función para emparejar equipos en primera fase
-void one_fase() {
+// Genera los emparejamientos de la primera fase
+void primera_fase() {
     if (total_equipos < 2) {
         printf("No hay suficientes equipos para organizar partidos.\n");
         return;
     }
 
-    mezclar_equipos(); // Mezclamos los equipos antes de emparejarlos
-
-    printf("\nPartidos programados:\n");
+    mezclar_equipos();
+    printf("\nCalendario de la Primera Fase:\n");
     for (int i = 0; i < total_equipos - 1; i += 2) {
-        printf("%s vs %s\n", equipos[i].nombre, equipos[i + 1].nombre);
+        printf("%s vs %s - Fecha: %d/%d/%d - Hora: %02d:00\n", 
+               equipos[i].nombre, equipos[i + 1].nombre, 
+               rand() % 30 + 1, rand() % 12 + 1, 2025, rand() % 10 + 14);
     }
-
-    // Si hay un número impar de equipos, el último queda sin partido
+    
     if (total_equipos % 2 != 0) {
         printf("%s descansa esta ronda.\n", equipos[total_equipos - 1].nombre);
     }
 }
 
-int two_fase(int n){
-	int puntos, i;
-	
-	if (total_equipos < 2) {
+// Función de comparación para ordenar equipos por puntos (mayor a menor)
+int comparar_puntos(const void *a, const void *b) {
+    return ((Equipo*)b)->puntos - ((Equipo*)a)->puntos;
+}
+
+// Emparejar equipos en la segunda fase según puntos
+void segunda_fase() {
+    if (total_equipos < 2) {
         printf("No hay suficientes equipos para organizar partidos.\n");
         return;
     }
     
-    for(i = total_equipos; i < total_equipos; i--){
-    	
-	}
-}    
-
-
-// Función de comparación para qsort
-int comparar(const void *a, const void *b) {
-    return (*(int*)a - *(int*)b);
-}
-
-void emparejar_numeros(int arr[], int size) {
-    // Ordenar los números
-    qsort(arr, size, sizeof(int), comparar);
-
-    // Emparejar e imprimir
-    for (int i = 0; i < size - 1; i += 2) {
-        printf("%d -> %d\n", arr[i], arr[i + 1]);
+    qsort(equipos, total_equipos, sizeof(Equipo), comparar_puntos);
+    
+    printf("\nCalendario de la Segunda Fase:\n");
+    for (int i = 0; i < total_equipos - 1; i += 2) {
+        printf("%s (%d pts) vs %s (%d pts) - Fecha: %d/%d/%d - Hora: %02d:00\n", 
+               equipos[i].nombre, equipos[i].puntos, 
+               equipos[i + 1].nombre, equipos[i + 1].puntos, 
+               rand() % 30 + 1, rand() % 12 + 1, 2025, rand() % 10 + 14);
     }
-
-    // Manejar caso impar
-    if (size % 2 != 0) {
-        printf("El número %d no tiene pareja.\n", arr[size - 1]);
+    
+    if (total_equipos % 2 != 0) {
+        printf("%s descansa esta ronda.\n", equipos[total_equipos - 1].nombre);
     }
 }
+
+int calendario(){
+	int op;
+	
+	do{	
+		mezclar_equipos();
+		primera_fase();
+		
+		if(equipos.total_goles<0){
+			printf("Aun no puedes pasar a la fase 2");
+			return 1;
+		}else{
+			segunda_fase();
+			return 1;
+		}
+		
+	}while(1);
+	
+return 0;
+}
+
+#endif
